@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF - 8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doc test</title>
+    </head>
+    <body>
+        <a download href="https://hp-my.sharepoint.com/:u:/r/personal/myron_huang_hp_com/Documents/01.13.01.zip">download</a>
+        
+        <h1>圖片檔案上傳</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png"   style="position:absolute;height:320px;width:550px;">
+            </div>
+            
+            <div class="preview" style="float:left;background:#cccccc;height:320px;width:550px;text-align:center;z-index:1;"><p style="line-height: 300px;">未選擇任何檔案</p></div>
+        </form>
+
+<script>
+var input = document.getElementById('image_uploads');
+var preview = document.querySelector('.preview');
+
+input.style.opacity = 0;
+input.addEventListener('change', updateImageDisplay);function updateImageDisplay() {
+	while(preview.firstChild) {
+		preview.removeChild(preview.firstChild);
+	}
+
+	if(input.files.length === 0) {
+		var para = document.createElement('p');
+		para.textContent = '未選擇任何檔案';
+    para.style="line-height: 300px;";
+		preview.appendChild(para);
+	} 
+	else {
+		var para = document.createElement('p');
+		var image = document.createElement('img');
+		image.src = window.URL.createObjectURL(input.files[0]);
+		preview.appendChild(image);
+		preview.appendChild(para);
+	}
+}                  
+</script>
+    </body>
+</html>
